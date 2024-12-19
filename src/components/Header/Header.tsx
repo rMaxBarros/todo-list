@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 // Importando assim, evita o conflito de tags entre diferentes componentes pois é um criado um identificador único para cada uso.
 
 // Indicando que a constante Header é do tipo FC(Componente funcional)
@@ -6,13 +6,15 @@ import styles from './styles.module.css';
 export const Header: React.FC = () => {
     return (
         <header className={styles.header}>
-            <div>
-                <h1>My Todo</h1>
-                <span>Bem-vindo, Max!</span>
-            </div>
+            <div className={styles.container}>
+                <div>
+                    <h1>My Todo</h1>
+                    <span>Bem-vindo, Max!</span>
+                </div>
 
-            <div>
-                {/* cards */}
+                <div>
+                    {/* cards */}
+                </div>
             </div>
         </header>
     );
