@@ -1,3 +1,4 @@
+import { StatsCard } from '../StatsCard/StatsCard';
 import styles from './styles.module.scss';
 // Importando assim, evita o conflito de tags entre diferentes componentes pois é um criado um identificador único para cada uso.
 
@@ -13,7 +14,9 @@ export const Header: React.FC = () => {
                 </div>
 
                 <div>
-                    {/* cards */}
+                    <StatsCard />
+                    <StatsCard />
+                    <StatsCard />
                 </div>
             </div>
         </header>
