@@ -18,5 +18,8 @@
         display: flex;
         align-items: center;
         gap: 2rem;
+
+        // Fazer com que os cards fiquem na metade da linha do header.
+        transform: translateY(50%);
     }
 }
