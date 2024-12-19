@@ -1,8 +1,11 @@
 import React from 'react';
+import { Header } from './components/Header/Header';
+
+import './styles/global.css';
 
 function App() {
   return (
-    <h1>React + TypeScript</h1>
+    <Header />
   );
 }
 
