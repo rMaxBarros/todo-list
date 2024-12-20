@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 // Como é em TypeScript, precisa ser fornecido a Tipagem do Array tasks.
@@ -34,6 +34,16 @@ export const Tasks: React.FC = () => {
         localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTaskTitle('');
     }
+
+    // Exibindo as tarefas armazenadas no LocalStorage mesmo com atualização da página
+    useEffect(() => {
+        const tasksOnLocalStorage = localStorage.getItem('tasks');
+
+        if (tasksOnLocalStorage) {
+            // Transforma o localStorage que está em String, pra um Array e joga dentro estado de Tarefas.
+            setTasks(JSON.parse(tasksOnLocalStorage));
+        }
+    }, []);
 
     return (
         <section className={styles.container}>
