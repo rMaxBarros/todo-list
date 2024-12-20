@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 // Indicando que a constante Header é do tipo FC(Componente funcional)
 // Tecnicamente não é necessário isso. É apenas para impedir que a função não retorne nada.
 export const Header: React.FC = () => {
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
