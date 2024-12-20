@@ -1,12 +1,28 @@
 import { FormEvent, useState } from 'react';
 import styles from './styles.module.scss';
 
-export const Tasks: React.FC = () => {
-    const [taskTitle, setTaskTitle] = useState('');
-    // ARRAY HOOKSTATE: taskTitle: o estado. setTaskTitle: função que redefine o valor do estado. É inicializado com uma string vazia nesse caso.
+// Como é em TypeScript, precisa ser fornecido a Tipagem do Array tasks.
+interface Task {
+    title: string;
+    done: boolean;
+    id: number;
+}
 
+export const Tasks: React.FC = () => {
+    // ARRAY HOOKSTATE: taskTitle: o estado. setTaskTitle: função que redefine o valor do estado. É inicializado com uma string vazia nesse caso.
+    const [taskTitle, setTaskTitle] = useState('');
+    const [tasks, setTasks] = useState([] as Task[]);
+
+    // Função disparada quando o usuário está querendo adicionar uma nova tarefa.
     function handleSubmitAddTask(event: FormEvent) {
         event.preventDefault();
+
+        if (taskTitle.length <= 3) {
+            alert('Não é possível adicionar uma tarefa com menos de três letras.');
+            return; // Sai da função.
+        }
+
+        // Adicione a tarefa
     }
 
     return (
