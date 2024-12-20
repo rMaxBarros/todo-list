@@ -25,8 +25,10 @@ export const Tasks: React.FC = () => {
         // Adicione a tarefa
         setTasks([
             ...tasks, // ... pega todas as tarefas que já existiam e coloca no novo valor do estado de tarefas.
-            { id: 1, title: taskTitle, done: false },
+            { id: new Date().getTime(), title: taskTitle, done: false },
+            // O id está recebendo um valor numérico que é sempre diferente, de acordo com a hora atual.
         ]);
+        setTaskTitle('');
     }
 
     return (
@@ -51,7 +53,7 @@ export const Tasks: React.FC = () => {
                 {/* Ao abrir as primeiras {}, é como se entrasse no JS e com o return() retorna ao código HTML. É o padrão costumeiro de toda função etc. */}
                 {tasks.map(task => {
                     return (
-                        <li>
+                        <li key={task.id}> {/* Todo filho de lista PRECISA ter um id único */}
                             <input type="checkbox" id={`task-${task.id}`} />
                             <label htmlFor={`task-${task.id}`}>{task.title}</label>
                         </li>
