@@ -22,12 +22,16 @@ export const Tasks: React.FC = () => {
             return; // Sai da função.
         }
 
-        // Adicione a tarefa
-        setTasks([
+        // Adiciona a tarefa
+        const newTasks = [
             ...tasks, // ... pega todas as tarefas que já existiam e coloca no novo valor do estado de tarefas.
             { id: new Date().getTime(), title: taskTitle, done: false },
             // O id está recebendo um valor numérico que é sempre diferente, de acordo com a hora atual.
-        ]);
+        ];
+        // Essa variável newTasks precisa ser criada pois, ao usar o useState setTasks, para adicionar no storage, é necessário passar ela pois o conteúdo passado num useState demora um tempo para ser atualizado.
+        setTasks(newTasks);
+        // Salvando os itens no "banco de dados" do navegador.
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTaskTitle('');
     }
 
