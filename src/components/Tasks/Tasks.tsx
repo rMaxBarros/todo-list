@@ -47,14 +47,16 @@ export const Tasks: React.FC = () => {
             </form>
 
             <ul>
-                <li>
-                    <input type="checkbox" id="task" />
-                    <label htmlFor="task">Tarefa 1</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="task" />
-                    <label htmlFor="task">Tarefa 1</label>
-                </li>
+                {/* Map utilizado para renderização múltipla. */}
+                {/* Ao abrir as primeiras {}, é como se entrasse no JS e com o return() retorna ao código HTML. É o padrão costumeiro de toda função etc. */}
+                {tasks.map(task => {
+                    return (
+                        <li>
+                            <input type="checkbox" id={`task-${task.id}`} />
+                            <label htmlFor={`task-${task.id}`}>{task.title}</label>
+                        </li>
+                    );
+                })}
             </ul>
         </section>
     )
