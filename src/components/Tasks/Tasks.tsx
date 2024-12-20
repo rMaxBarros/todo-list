@@ -25,6 +25,17 @@ export const Tasks: React.FC = () => {
 
                 <button type='submit'>Adicionar Tarefa</button>
             </form>
+
+            <ul>
+                <li>
+                    <input type="checkbox" id="task" />
+                    <label htmlFor="task">Tarefa 1</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="task" />
+                    <label htmlFor="task">Tarefa 1</label>
+                </li>
+            </ul>
         </section>
     )
 }
