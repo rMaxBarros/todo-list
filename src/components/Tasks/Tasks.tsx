@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import styles from './styles.module.scss';
 
 export const Tasks: React.FC = () => {
     const [taskTitle, setTaskTitle] = useState('');
     // ARRAY HOOKSTATE: taskTitle: o estado. setTaskTitle: função que redefine o valor do estado. É inicializado com uma string vazia nesse caso.
 
+    function handleSubmitAddTask(event: FormEvent) {
+        event.preventDefault();
+    }
+
     return (
         <section className={styles.container}>
-            <form onSubmit={(event) => { event.preventDefault() }}>
+            <form onSubmit={handleSubmitAddTask}>
                 <div>
                     <label htmlFor="task-title">Adicionar Tarefa</label>
                     <input
