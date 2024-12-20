@@ -23,6 +23,10 @@ export const Tasks: React.FC = () => {
         }
 
         // Adicione a tarefa
+        setTasks([
+            ...tasks, // ... pega todas as tarefas que já existiam e coloca no novo valor do estado de tarefas.
+            { id: 1, title: taskTitle, done: false },
+        ]);
     }
 
     return (
