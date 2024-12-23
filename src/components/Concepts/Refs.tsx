@@ -1,25 +1,27 @@
 import { useEffect, useRef, useState } from "react"
 
 export const Refs: React.FC = () => {
-    const inputRef = useRef(null); // { current: null }
+    const inputRef = useRef<HTMLInputElement>(null); // { current: null }
+                        // Atribuição do tipo da Ref.
 
-    // Pegar a mudança do useRef com o input.
-    // Toda vez que o inputRef mudar, dá um console.log mostrando o que tem dentro dele.
-    useEffect(() => {
-        console.log(inputRef);
-    }, [inputRef]);             // Pega a referência de nulo para: { current: input }
+                        
+    // Poderia colocar addEventListener etc aqui. É como voltar a usar o JavaScript Valina dentro do React.
+    // Ao clicar no botão, o foco fica no input piscando.
+    function handleClickOnButton() {
+        if (inputRef.current){
+            inputRef.current.focus();
+        }
+    }
 
     return (
         <div style={{ padding: '2rem' }}>
             <h1>useRef</h1>
 
             <br />
-            {/* Com a propriedade ref, ele pega o valor dela e joga dentro do current
-            Ele pega todas as propriedades que existem dentro do HTML Vanila, para dentro do react. */}
             <input type="text" placeholder="Nome Completo" ref={inputRef} />
 
             <br />
-            <button>Clique aqui</button>
+            <button onClick={handleClickOnButton}>Foque no Input</button>
         </div>
     );
 }
