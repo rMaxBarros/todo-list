@@ -1,27 +1,31 @@
-import { useEffect, useRef, useState } from "react"
+import { FormEvent, useEffect, useRef, useState } from "react"
 
 export const Refs: React.FC = () => {
-    const inputRef = useRef<HTMLInputElement>(null); // { current: null }
-                        // Atribuição do tipo da Ref.
+    const inputNameRef = useRef<HTMLInputElement>(null); // { current: null }
+    const inputEmailRef = useRef<HTMLInputElement>(null);
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-                        
-    // Poderia colocar addEventListener etc aqui. É como voltar a usar o JavaScript Valina dentro do React.
-    // Ao clicar no botão, o foco fica no input piscando.
-    function handleClickOnButton() {
-        if (inputRef.current){
-            inputRef.current.focus();
-        }
+    function handleOnSubmit(event: FormEvent) {
+        event.preventDefault(); // Evita que a página seja recarregada ao submeter ao formulário
+        //Uncontrolled input: input não controlado. Sem o uso de useState. Pega o valor completo apenas no final da digitação.
+        console.log(inputNameRef.current?.value);
+        console.log(inputEmailRef.current?.value);
+        console.log(inputPasswordRef.current?.value);
     }
 
-    return (
-        <div style={{ padding: '2rem' }}>
+    // read-hook-form: biblioteca que lida com o useRef para formulários.
+
+    return ( // Quando o formulário é submetido, chama a função no onSubmit passando o evento
+        <form style={{ padding: '2rem' }} onSubmit={(event) => handleOnSubmit(event)}>
             <h1>useRef</h1>
 
             <br />
-            <input type="text" placeholder="Nome Completo" ref={inputRef} />
+            <input type="text" placeholder="Nome Completo" ref={inputNameRef} />
+            <input type="email" placeholder="email" ref={inputEmailRef} />
+            <input type="password" placeholder="Senha" ref={inputPasswordRef} />
 
             <br />
-            <button onClick={handleClickOnButton}>Foque no Input</button>
-        </div>
+            <button type="submit">Submeter</button>
+        </form>
     );
 }
