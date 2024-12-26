@@ -74,9 +74,15 @@ export const Tasks: React.FC = () => {
                             <input
                                 type="checkbox"
                                 id={`task-${task.id}`}
-                                onChange={() => handleToggleTasksStatus(task.id)} />
-                                {/* OnChange espera uma função e não a chamada de uma função. Como tem os parenteses, é uma chamada de função. Portanto, é necessário a ArrowFunction () => */}
-                            <label htmlFor={`task-${task.id}`}>{task.title}</label>
+                                onChange={() => handleToggleTasksStatus(task.id)}
+                            />
+                            {/* OnChange espera uma função e não a chamada de uma função. Como tem os parenteses, é uma chamada de função. Portanto, é necessário a ArrowFunction () => */}
+                            <label
+                                className={task.done ? styles.done : ''}
+                                htmlFor={`task-${task.id}`}
+                            >
+                                {task.title}
+                            </label>
                         </li>
                     );
                 })}
