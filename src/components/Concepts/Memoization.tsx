@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 interface MemoizationProps {
     financialData: {
@@ -27,6 +27,12 @@ export const Memoization: React.FC<MemoizationProps> = ({ financialData }) => {
         }, 0);
     }, [financialData.outcomes]);
 
+    // Exemplo simples para uso do useCallback
+    // useCallback: evitar que a função seja recriada - ela só depende dos parâmetros que são passados em sua criação. Se tiver parâmetros externos, ela vai precisar ser recriada quando o parâmetro externo mudar. E será recriada APENAS e SEMPRE quando isso acontecer.
+    const aplicarDesconto = useCallback((desconto: number) => {
+        return Number(totalOutcomes) * (1 - desconto);
+    }, [totalOutcomes]); // Passa o valor externo para que a função seja recriada toda vez que o parâmetro seja atualizado.
+
     return (
         <div style={{ padding: "2rem" }}>
             <h1>Memoization</h1>
@@ -45,3 +51,6 @@ export const Memoization: React.FC<MemoizationProps> = ({ financialData }) => {
         </div>
     )
 }
+
+// useMemo: usado quando quer memorizar o que a função faz.
+// useCallback: usado quando quer memorizar a definição da função. (Ele evita que ela seja recriada) useMemo é mais usado e bem melhor.
