@@ -8,7 +8,16 @@ import { TasksContext } from '../../Context/TasksContext';
 // Tecnicamente não é necessário isso. É apenas para impedir que a função não retorne nada.
 export const Header: React.FC = () => {
     const { tasks } = useContext(TasksContext);
-    console.log('Header:', tasks);
+    // console.log('Header:', tasks);
+
+    const totalTasks = tasks.length;
+
+    const totalPending = tasks.reduce((total, task) => {
+        if (!task.done) return total + 1; // Se o total for 0 e a tarefa não tiver concluída, conclui e aumenta 1.
+        return total; // Se tiver concluída, continua em 0.
+    }, 0); // Inicia o total com 0
+
+    const totalDone = totalTasks - totalPending;
 
     return (
         <header className={styles.header}>
@@ -21,15 +30,15 @@ export const Header: React.FC = () => {
                 <div>
                     <StatsCard
                         title='Total de Tarefas'
-                        value={5}
+                        value={totalTasks}
                     />
                     <StatsCard
                         title='Tarefas Pendentes'
-                        value={4}
+                        value={totalPending}
                     />
                     <StatsCard
                         title='Tarefas Concluídas'
-                        value={1}
+                        value={totalDone}
                     />
                 </div>
             </div>
