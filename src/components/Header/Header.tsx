@@ -7,8 +7,8 @@ import { TasksContext } from '../../Context/TasksContext';
 // Indicando que a constante Header é do tipo FC(Componente funcional)
 // Tecnicamente não é necessário isso. É apenas para impedir que a função não retorne nada.
 export const Header: React.FC = () => {
-    const contexto = useContext(TasksContext);
-    console.log('Header:', contexto);
+    const { tasks } = useContext(TasksContext);
+    console.log('Header:', tasks);
 
     return (
         <header className={styles.header}>
