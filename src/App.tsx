@@ -4,6 +4,7 @@ import { Header } from './components/Header/Header';
 import './styles/global.css';
 import { Tasks } from './components/Tasks/Tasks';
 import { Refs } from './components/Concepts/Refs';
+import { Memoization } from './components/Concepts/Memoization';
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -24,7 +25,12 @@ function App() {
       <Header />
       <Tasks />
 
-      <Refs />
+      {/* <Refs /> */}
+
+      {/* {{}}
+      A primeira chave significa que é passado um código JavaScript.
+      A segunda, que será passado um objeto. */}
+      <Memoization financialData={{ incomes: [50, 30, 20], outcomes: [5, 8, 4] }}/>
 
       {/* <button onClick={() => setToggle(!toggle)}>Toggle</button> */}
     </>
