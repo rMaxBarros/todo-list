@@ -7,7 +7,7 @@ export const Tasks: React.FC = () => {
     const [taskTitle, setTaskTitle] = useState('');
 
     // Pegando as exportações do contexto de forma desestruturada.
-    const { tasks, setTasks } = useContext(TasksContext);
+    const { tasks, setTasks, handleToggleTasksStatus} = useContext(TasksContext);
 
     // Função disparada quando o usuário está querendo adicionar uma nova tarefa.
     function handleSubmitAddTask(event: FormEvent) {
@@ -31,21 +31,9 @@ export const Tasks: React.FC = () => {
         setTaskTitle('');
     }
 
-    // Inverte o status da tarefa.
-    function handleToggleTasksStatus(taskId: number) {
-        // Percorre as tasks (que vem do contexto, estão declaradas lá) com o map.
-        const newTasks = tasks.map((task) => {
-            if (taskId === task.id) {
-                return {
-                    ...task,
-                    done: !task.done
-                }
-            }
-            return task
-        });
-
-        setTasks(newTasks);
-
+    // Filter: obtém um array novo que não tem a tarefa a ser removida.
+    function handleRemoveTask(taskId: number) {
+        
     }
 
     return (
@@ -83,6 +71,8 @@ export const Tasks: React.FC = () => {
                             >
                                 {task.title}
                             </label>
+
+                            <button>Remover</button>
                         </li>
                     );
                 })}
