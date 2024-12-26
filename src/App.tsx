@@ -1,39 +1,16 @@
-import { useState } from 'react';
 import { Header } from './components/Header/Header';
+import { Tasks } from './components/Tasks/Tasks';
+import { TasksProvider } from './Context/TasksContext';
 
 import './styles/global.css';
-import { Tasks } from './components/Tasks/Tasks';
-import { Refs } from './components/Concepts/Refs';
-import { Memoization } from './components/Concepts/Memoization';
 
 function App() {
-  const [toggle, setToggle] = useState(false);
-
-  // O UseEffect será disparado sempre que alguma variável do array de dependências for alterada.
-  // Por Padrão, sempre o UseEffect será disparado após a montagem do componente. (ComponentDidMount)
-  // useEffect( () => {
-  //   console.log('Executando a função do useEffect...');
-
-  //   // ComponentWillUnmount é acionado no UseEffect dentro do return() passando uma função => {}, essa função é chamada Cleanup Function.
-  //   return () => {
-  //     console.log('Isso aqui vai ser executado quando o componente App for desmontado da tela');
-  //   };
-  // }, [toggle] );
-
+  // Todos os componentes dentro do TaskProvider, conseguem acessar todas as variáveis do Contexto.
   return (
-    <>
+    <TasksProvider>
       <Header />
       <Tasks />
-
-      {/* <Refs /> */}
-
-      {/* {{}}
-      A primeira chave significa que é passado um código JavaScript.
-      A segunda, que será passado um objeto. */}
-      <Memoization financialData={{ incomes: [50, 30, 20], outcomes: [5, 8, 4] }}/>
-
-      {/* <button onClick={() => setToggle(!toggle)}>Toggle</button> */}
-    </>
+    </TasksProvider>
   );
 }
 
