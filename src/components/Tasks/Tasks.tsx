@@ -1,21 +1,13 @@
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import styles from './styles.module.scss';
 import { TasksContext } from '../../Context/TasksContext';
-
-// Como é em TypeScript, precisa ser fornecido a Tipagem do Array tasks.
-interface Task {
-    title: string;
-    done: boolean;
-    id: number;
-}
 
 export const Tasks: React.FC = () => {
     // ARRAY HOOKSTATE: taskTitle: o estado. setTaskTitle: função que redefine o valor do estado. É inicializado com uma string vazia nesse caso.
     const [taskTitle, setTaskTitle] = useState('');
-    const [tasks, setTasks] = useState([] as Task[]);
 
-    const variavel = useContext(TasksContext);
-    console.log('Tasks: ', variavel);
+    // Pegando as exportações do contexto de forma desestruturada.
+    const { tasks, setTasks } = useContext(TasksContext);
 
     // Função disparada quando o usuário está querendo adicionar uma nova tarefa.
     function handleSubmitAddTask(event: FormEvent) {
@@ -38,16 +30,6 @@ export const Tasks: React.FC = () => {
         localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTaskTitle('');
     }
-
-    // Exibindo as tarefas armazenadas no LocalStorage mesmo com atualização da página
-    useEffect(() => {
-        const tasksOnLocalStorage = localStorage.getItem('tasks');
-
-        if (tasksOnLocalStorage) {
-            // Transforma o localStorage que está em String, pra um Array e joga dentro estado de Tarefas.
-            setTasks(JSON.parse(tasksOnLocalStorage));
-        }
-    }, []);
 
     return (
         <section className={styles.container}>
