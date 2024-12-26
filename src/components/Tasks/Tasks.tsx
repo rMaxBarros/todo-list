@@ -31,6 +31,23 @@ export const Tasks: React.FC = () => {
         setTaskTitle('');
     }
 
+    // Inverte o status da tarefa.
+    function handleToggleTasksStatus(taskId: number) {
+        // Percorre as tasks (que vem do contexto, estão declaradas lá) com o map.
+        const newTasks = tasks.map((task) => {
+            if (taskId === task.id) {
+                return {
+                    ...task,
+                    done: !task.done
+                }
+            }
+            return task
+        });
+
+        setTasks(newTasks);
+
+    }
+
     return (
         <section className={styles.container}>
             <form onSubmit={handleSubmitAddTask}>
@@ -54,7 +71,11 @@ export const Tasks: React.FC = () => {
                 {tasks.map(task => {
                     return (
                         <li key={task.id}> {/* Todo filho de lista PRECISA ter um id único */}
-                            <input type="checkbox" id={`task-${task.id}`} />
+                            <input
+                                type="checkbox"
+                                id={`task-${task.id}`}
+                                onChange={() => handleToggleTasksStatus(task.id)} />
+                                {/* OnChange espera uma função e não a chamada de uma função. Como tem os parenteses, é uma chamada de função. Portanto, é necessário a ArrowFunction () => */}
                             <label htmlFor={`task-${task.id}`}>{task.title}</label>
                         </li>
                     );
